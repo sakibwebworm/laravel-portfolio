@@ -1,98 +1,158 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE HTML>
 
-        <title>Laravel</title>
+<html>
+<head>
+    <title>Md-sakib</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <noscript><link rel="stylesheet" href="/css/noscript.css" /></noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+</head>
+<body class="is-preload">
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
+<!-- Wrapper-->
+<div id="wrapper">
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
+    <!-- Nav -->
+    <nav id="nav">
+        <a href="#" class="icon fa-home"><span>Home</span></a>
+        <a href="#work" class="icon fa-folder"><span>Work</span></a>
+        <a href="#contact" class="icon fa-envelope"><span>Contact</span></a>
+        <a href="https://twitter.com/ajlkn" class="icon fa-twitter"><span>Twitter</span></a>
+    </nav>
 
-            .full-height {
-                height: 100vh;
-            }
+    <!-- Main -->
+    <div id="main">
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
+        <!-- Me -->
+        <article id="home" class="panel intro">
+            <header>
+                <h1>MD SAKIB</h1>
+                <p>Full stack developer</p>
+            </header>
+            <a href="#work" class="jumplink pic">
+                <span class="arrow icon fa-chevron-right"><span>See my work</span></span>
+                <img src="images/me.jpg" alt="" />
+            </a>
+        </article>
+        <!-- Work -->
+        <article id="work" class="panel">
+            <header>
+                <h2>Work</h2>
+            </header>
+            <p>
+                A wide range of projects developed in php, js, mysql, bootstrap, laravel and vue. More details are available when a picture is clicked :)
+            </p>
+            <section>
+                <div class="row portfolio_column">
+                    <div class="col-4 col-6-medium col-12-small">
+                        <a href="#portfolio1" class="image fit"><img src="/images/pic01.jpg" alt=""></a>
+                    </div>
+                    <div class="col-4 col-6-medium col-12-small">
+                        <a href="#portfolio2" class="image fit"><img src="/images/pic02.jpg" alt=""></a>
+                    </div>
+                    <div class="col-4 col-6-medium col-12-small">
+                        <a href="#portfolio3" class="image fit"><img src="/images/pic03.jpg" alt=""></a>
+                    </div>
+                    <div class="col-4 col-6-medium col-12-small">
+                        <a href="#portfolio3" class="image fit"><img src="/images/pic04.jpg" alt=""></a>
+                    </div>
+                    <div class="col-4 col-6-medium col-12-small">
+                        <a href="#" class="image fit"><img src="/images/pic05.jpg" alt=""></a>
+                    </div>
+                    <div class="col-4 col-6-medium col-12-small">
+                        <a href="#" class="image fit"><img src="/images/pic06.jpg" alt=""></a>
+                    </div>
+                    <div class="col-4 col-6-medium col-12-small">
+                        <a href="#" class="image fit"><img src="/images/pic07.jpg" alt=""></a>
+                    </div>
+                    <div class="col-4 col-6-medium col-12-small">
+                        <a href="#" class="image fit"><img src="/images/pic08.jpg" alt=""></a>
+                    </div>
+                    <div class="col-4 col-6-medium col-12-small">
+                        <a href="#" class="image fit"><img src="/images/pic09.jpg" alt=""></a>
+                    </div>
+                    <div class="col-4 col-6-medium col-12-small">
+                        <a href="#" class="image fit"><img src="/images/pic10.jpg" alt=""></a>
+                    </div>
+                    <div class="col-4 col-6-medium col-12-small">
+                        <a href="#" class="image fit"><img src="/images/pic11.jpg" alt=""></a>
+                    </div>
+                    <div class="col-4 col-6-medium col-12-small">
+                        <a href="#" class="image fit"><img src="/images/pic12.jpg" alt=""></a>
+                    </div>
                 </div>
-            @endif
+            </section>
+        </article>
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+        <!-- Contact -->
+        <article id="contact" class="panel">
+            <header>
+                <h2>Contact Me</h2>
+            </header>
+            <form action="#" method="post">
+                <div>
+                    <div class="row">
+                        <div class="col-6 col-12-medium">
+                            <input type="text" name="name" placeholder="Name" />
+                        </div>
+                        <div class="col-6 col-12-medium">
+                            <input type="text" name="email" placeholder="Email" />
+                        </div>
+                        <div class="col-12">
+                            <input type="text" name="subject" placeholder="Subject" />
+                        </div>
+                        <div class="col-12">
+                            <textarea name="message" placeholder="Message" rows="6"></textarea>
+                        </div>
+                        <div class="col-12">
+                            <input type="submit" value="Send Message" />
+                        </div>
+                    </div>
                 </div>
+            </form>
+        </article>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
-        </div>
-    </body>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer">
+        <ul class="copyright">
+            <li>&copy; Portfolio</li><li><a href="http://md-sakib.com">MD SAKIB</a></li>
+        </ul>
+    </div>
+
+</div>
+<a id="demo01" href="#animatedModal">DEMO01</a>
+
+<!--DEMO01-->
+<div id="animatedModal">
+    <!--THIS IS IMPORTANT! to close the modal, the class name has to match the name given on the ID  class="close-animatedModal" -->
+    <div class="close-animatedModal">
+        <a href="#">CLOSE MODAL</a>
+    </div>
+
+    <div class="modal-content">
+        <!--Your modal content goes here-->
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/animatedModal.min.js"></script>
+</body>
+{{--<script>
+    $( ".portfolio_column a" ).on( "click", function() {
+
+        console.log( $(this).attr('href') );
+    });
+</script>--}}
+<script>
+    $("#demo01").animatedModal();
+</script>
 </html>
