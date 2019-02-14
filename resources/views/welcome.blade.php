@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+ `<!DOCTYPE HTML>
 
 <html>
 <head>
@@ -46,42 +46,11 @@
             </p>
             <section>
                 <div class="row portfolio_column">
+                    @foreach($works as $work)
                     <div class="col-4 col-6-medium col-12-small">
-                        <a href="#portfolio1" class="image fit"><img src="/images/pic01.jpg" alt=""></a>
+                        <a href="#{{$work->title}}" data-id="{{$work->id}}" class="image fit"><img src="{{$work->image_path}}" alt=""></a>
                     </div>
-                    <div class="col-4 col-6-medium col-12-small">
-                        <a href="#portfolio2" class="image fit"><img src="/images/pic02.jpg" alt=""></a>
-                    </div>
-                    <div class="col-4 col-6-medium col-12-small">
-                        <a href="#portfolio3" class="image fit"><img src="/images/pic03.jpg" alt=""></a>
-                    </div>
-                    <div class="col-4 col-6-medium col-12-small">
-                        <a href="#portfolio3" class="image fit"><img src="/images/pic04.jpg" alt=""></a>
-                    </div>
-                    <div class="col-4 col-6-medium col-12-small">
-                        <a href="#" class="image fit"><img src="/images/pic05.jpg" alt=""></a>
-                    </div>
-                    <div class="col-4 col-6-medium col-12-small">
-                        <a href="#" class="image fit"><img src="/images/pic06.jpg" alt=""></a>
-                    </div>
-                    <div class="col-4 col-6-medium col-12-small">
-                        <a href="#" class="image fit"><img src="/images/pic07.jpg" alt=""></a>
-                    </div>
-                    <div class="col-4 col-6-medium col-12-small">
-                        <a href="#" class="image fit"><img src="/images/pic08.jpg" alt=""></a>
-                    </div>
-                    <div class="col-4 col-6-medium col-12-small">
-                        <a href="#" class="image fit"><img src="/images/pic09.jpg" alt=""></a>
-                    </div>
-                    <div class="col-4 col-6-medium col-12-small">
-                        <a href="#" class="image fit"><img src="/images/pic10.jpg" alt=""></a>
-                    </div>
-                    <div class="col-4 col-6-medium col-12-small">
-                        <a href="#" class="image fit"><img src="/images/pic11.jpg" alt=""></a>
-                    </div>
-                    <div class="col-4 col-6-medium col-12-small">
-                        <a href="#" class="image fit"><img src="/images/pic12.jpg" alt=""></a>
-                    </div>
+                        @endforeach
                 </div>
             </section>
         </article>
@@ -91,7 +60,8 @@
             <header>
                 <h2>Contact Me</h2>
             </header>
-            <form action="#" method="post">
+            <form action="/contact" method="post">
+                {{ csrf_field() }}
                 <div>
                     <div class="row">
                         <div class="col-6 col-12-medium">
