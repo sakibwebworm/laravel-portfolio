@@ -19,7 +19,8 @@
         <a href="#" class="icon fa-home"><span>Home</span></a>
         <a href="#work" class="icon fa-folder"><span>Work</span></a>
         <a href="#contact" class="icon fa-envelope"><span>Contact</span></a>
-        <a href="https://twitter.com/ajlkn" class="icon fa-twitter"><span>Twitter</span></a>
+        <a href="https://github.com/sakibwebworm" class="icon fa-github"><span>Twitter</span></a>
+       @if (Auth::check()) <a href="#new_work" class="icon fa-clipboard"><span>Add work</span></a>@endif
     </nav>
 
     <!-- Main -->
@@ -48,7 +49,8 @@
                 <div class="row portfolio_column">
                     @foreach($works as $work)
                     <div class="col-4 col-6-medium col-12-small">
-                        <a style="cursor: pointer" data-id="{{$work->id}}" class="image fit">@if (Auth::check())<div class="image_container"><img src="{{$work->image_path}}"alt=""></div> @endif </a>
+                        <a style="cursor: pointer" data-id="{{$work->id}}" class="image fit"> <img src="{{$work->image_path}}"alt=""> </a>
+                        <div class="overlay update_or_delete" style="cursor: pointer" onclick="location.href='/decide/{{$work->id}}'" >Update Or Delete</div>
                     </div>
                         @endforeach
                 </div>
@@ -78,6 +80,33 @@
                         </div>
                         <div class="col-12">
                             <input type="submit" value="Send Message" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </article>
+
+        <!-- Submit new work -->
+        <!-- Contact -->
+        <article id="new_work" class="panel">
+            <header>
+                <h2>Add work</h2>
+            </header>
+            <form action="/add_work" method="post" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                <div>
+                    <div class="row">
+                        <div class="col-6 col-12-medium">
+                            <input type="text" name="title" placeholder="title" />
+                        </div>
+                        <div class="col-6 col-12-medium">
+                            <input type="file" name="image_path" placeholder="picture" />
+                        </div>
+                        <div class="col-12">
+                            <textarea class="textarea" name="body" placeholder="Body" rows="6"></textarea>
+                        </div>
+                        <div class="col-12">
+                            <input type="submit" value="Upload" />
                         </div>
                     </div>
                 </div>
@@ -119,8 +148,17 @@
 <script src="/js/main.js"></script>
 <script src="/js/animatedModal.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+<script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
+<script>
+    $('.textarea').ckeditor();
+    // $('.textarea').ckeditor(); // if class is prefered.
+</script>
 <script>
     $('close-animatedModal a').hide();
+    /*$( ".portfolio_column a overlay" ).on( "click", function(e) {
+        window.location.href=$(this).data('id');
+    });*/
     $( ".portfolio_column a" ).on( "click", function(e) {
         function modal_content_create(response){
             var modal_content_article = document.getElementsByClassName("modal_content_article")[0];
@@ -160,5 +198,13 @@
     });
 
 </script>
+<style>
+
+    .update_or_delete{
+        text-align: center;
+        background: black;
+        opacity: .5;
+    }
+</style>
 </body>
 </html>

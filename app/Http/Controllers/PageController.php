@@ -32,4 +32,21 @@ class PageController extends Controller
 
         return back();
     }
+
+    public function work(Request $request){
+        $work=new Work();
+        $data=$request->all();
+        if($request->has('image_path')){
+            $getimageName = time() . '.' . $request->image_path->getClientOriginalExtension();
+            $request->image_path->move(public_path('images'), $getimageName);
+            $data['image_path'] = '/images/' . $getimageName;
+        }
+        $work->title=$request->title;
+        $work->body=$request->body;
+        $work->image_path=$data['image_path'];
+        $work->save();
+        return back();
+    }
+
+    
 }

@@ -14,6 +14,7 @@
 Route::get('/', 'PageController@home');
 Route::post('/contact', 'PageController@contact');
 Route::get('/work/{id}', 'WorkController@show');
+Route::post('/add_work/','PageController@work');
 Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');

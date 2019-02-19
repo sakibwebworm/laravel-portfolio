@@ -8,7 +8,7 @@ class Work extends Model
 {
     //
     protected $fillable = [
-        'title', 'screenshot', 'body'
+        'title', 'image_path', 'body'
     ];
 
 }
