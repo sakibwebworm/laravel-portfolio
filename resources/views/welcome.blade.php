@@ -48,7 +48,7 @@
                 <div class="row portfolio_column">
                     @foreach($works as $work)
                     <div class="col-4 col-6-medium col-12-small">
-                        <a href="#{{$work->title}}" data-id="{{$work->id}}" class="image fit"><img src="{{$work->image_path}}" alt=""></a>
+                        <a style="cursor: pointer" data-id="{{$work->id}}" class="image fit">@if (Auth::check())<div class="image_container"><img src="{{$work->image_path}}"alt=""></div> @endif </a>
                     </div>
                         @endforeach
                 </div>
@@ -94,17 +94,20 @@
     </div>
 
 </div>
-<a id="demo01" href="#animatedModal">DEMO01</a>
+<div id="demo01" href="#animatedModal" style="display: none">DEMO01</div>
 
 <!--DEMO01-->
 <div id="animatedModal">
     <!--THIS IS IMPORTANT! to close the modal, the class name has to match the name given on the ID  class="close-animatedModal" -->
     <div class="close-animatedModal">
-        <a href="#">CLOSE MODAL</a>
+        <a href="#">X</a>
     </div>
 
-    <div class="modal-content">
+    <div class="modal-content" style="text-align: center">
         <!--Your modal content goes here-->
+        <article class="panel modal_content_article image" id="modal_work">
+
+        </article>
     </div>
 </div>
 
@@ -115,14 +118,47 @@
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
 <script src="/js/animatedModal.min.js"></script>
-</body>
-{{--<script>
-    $( ".portfolio_column a" ).on( "click", function() {
-
-        console.log( $(this).attr('href') );
-    });
-</script>--}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
 <script>
-    $("#demo01").animatedModal();
+    $('close-animatedModal a').hide();
+    $( ".portfolio_column a" ).on( "click", function(e) {
+        function modal_content_create(response){
+            var modal_content_article = document.getElementsByClassName("modal_content_article")[0];
+            var header=document.createElement("header");
+            var h2 = document.createElement("h2");
+            var img=document.createElement("img");
+            var body=document.createElement("p");
+            h2.innerHTML = response.data.title;
+            img.src = response.data.image_path;
+            body.innerHTML = response.data.body;
+            modal_content_article.appendChild(header);
+            header.appendChild(h2);
+            modal_content_article.appendChild(img);
+            modal_content_article.appendChild(body);
+        }
+        axios.get("/work/"+$(this).data('id'))
+            .then(function (response) {
+                modal_content_create(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+            .then(function () {
+                // always executed
+                $("#demo01").animatedModal({
+                    color: '#FFFFFF',
+                    afterOpen: function(){
+                        $('close-animatedModal a').show();
+                    },
+                    afterClose: function() {
+                        $('#modal_work').empty();
+                        $('close-animatedModal a').hide();
+                    }
+                });
+                $("#demo01").trigger("click")
+            });
+    });
+
 </script>
+</body>
 </html>

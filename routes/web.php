@@ -13,6 +13,7 @@
 
 Route::get('/', 'PageController@home');
 Route::post('/contact', 'PageController@contact');
+Route::get('/work/{id}', 'WorkController@show');
 Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -44,9 +44,11 @@ class WorkController extends Controller
      * @param  \App\Work  $work
      * @return \Illuminate\Http\Response
      */
-    public function show(Work $work)
+    public function show($id)
     {
         //
+        $singleWork=Work::findOrFail($id);
+        return $singleWork->toJson();
     }
 
     /**
