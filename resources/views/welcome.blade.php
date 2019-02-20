@@ -50,7 +50,7 @@
                     @foreach($works as $work)
                     <div class="col-4 col-6-medium col-12-small">
                         <a style="cursor: pointer" data-id="{{$work->id}}" class="image fit"> <img src="{{$work->image_path}}"alt=""> </a>
-                        <div class="overlay update_or_delete" style="cursor: pointer" onclick="workupdate({{$work->id}})" >Update Or Delete</div>
+                        @if(Auth::check())<div class="overlay update_or_delete" style="cursor: pointer" onclick="workupdate({{$work->id}})" >Update Or Delete</div>@endif
                     </div>
                         @endforeach
                 </div>
