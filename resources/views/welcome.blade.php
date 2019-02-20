@@ -50,7 +50,7 @@
                     @foreach($works as $work)
                     <div class="col-4 col-6-medium col-12-small">
                         <a style="cursor: pointer" data-id="{{$work->id}}" class="image fit"> <img src="{{$work->image_path}}"alt=""> </a>
-                        <div class="overlay update_or_delete" style="cursor: pointer" onclick="location.href='/decide/{{$work->id}}'" >Update Or Delete</div>
+                        <div class="overlay update_or_delete" style="cursor: pointer" onclick="workupdate({{$work->id}})" >Update Or Delete</div>
                     </div>
                         @endforeach
                 </div>
@@ -87,7 +87,7 @@
         </article>
 
         <!-- Submit new work -->
-        <!-- Contact -->
+       @if (Auth::check())
         <article id="new_work" class="panel">
             <header>
                 <h2>Add work</h2>
@@ -112,7 +112,36 @@
                 </div>
             </form>
         </article>
+@endif
+    <!-- update  work -->
+        @if (Auth::check())
+            <article id="update_work" class="panel">
+                <header>
+                    <h2>Update work</h2>
+                    <a href="" class="deletework">Delete</a>
+                </header>
 
+                <form action="" method="post" enctype="multipart/form-data" name="update_form" >
+                    {{ csrf_field() }}
+                    <div>
+                        <div class="row">
+                            <div class="col-6 col-12-medium">
+                                <input type="text" name="title" placeholder="title" id="update_form_title"/>
+                            </div>
+                            <div class="col-6 col-12-medium">
+                                <input type="file" name="image_path" placeholder="picture" />
+                            </div>
+                            <div class="col-12">
+                                <textarea class="textarea" name="body" placeholder="Body" id="update_form_body" rows="6"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <input type="submit" value="Update" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </article>
+        @endif
     </div>
 
     <!-- Footer -->
@@ -155,10 +184,29 @@
     // $('.textarea').ckeditor(); // if class is prefered.
 </script>
 <script>
+    function workupdate(id){
+        var url="/update_work/"+id;
+        var deleteurl="/delete_work/"+id;
+        document.update_form.action=url;
+        $(".deletework").attr("href", deleteurl);
+        window.location.hash='update_work';
+        axios.get(url)
+            .then(function (response) {
+                console.log(response.data.title);
+                document.getElementById("update_form_title").value = response.data.title;
+                CKEDITOR.instances.update_form_body.setData(response.data.body)
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+            .then(function () {
+                // always executed
+
+            });
+
+    }
     $('close-animatedModal a').hide();
-    /*$( ".portfolio_column a overlay" ).on( "click", function(e) {
-        window.location.href=$(this).data('id');
-    });*/
+
     $( ".portfolio_column a" ).on( "click", function(e) {
         function modal_content_create(response){
             var modal_content_article = document.getElementsByClassName("modal_content_article")[0];
